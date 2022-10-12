@@ -5,7 +5,7 @@
 const { TestEnvironment } = require("jest-environment-jsdom");
 const { hasUncaughtExceptionCaptureCallback } = require("process");
 
-const {game, newGame, showScore} = require("../game");
+const {game, newGame, showScore, addTurn} = require("../game");
 
 beforeAll(() => {
     let fs = require("fs");
@@ -47,8 +47,8 @@ describe("newGame works correctly", () => {
     test("should clear playerMoves", () => {
         expect(game.playerMoves).toEqual([]);
     });
-    test("should clear currentGame", () => {
-        expect(game.currentGame).toEqual([]);
+    test("should be one move in the currentGame array", () => {
+        expect(game.currentGame.length).toBe(1);
     });
     test("should display 0 for the element with the id of score", () => {
         expect(document.getElementById("score").innerText).toEqual(0);
